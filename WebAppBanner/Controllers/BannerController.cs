@@ -69,7 +69,7 @@ namespace WebAppBanner.Controllers
         public async Task<ActionResult<Banner>> PostBannerItem(Banner item)
         {
             if (!item.ValidateHtml())
-                return BadRequest();
+                return BadRequest("Invalid Html");
 
             item.Created = DateTime.Now;
             item.Modified = DateTime.Now;
@@ -96,7 +96,7 @@ namespace WebAppBanner.Controllers
 
         // DELETE: api/Banner/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteBannerItem(long id)
+        public async Task<IActionResult> DeleteBannerItem(int id)
         {
             var bannerItem = await _context.Banners.FindAsync(id);
 
